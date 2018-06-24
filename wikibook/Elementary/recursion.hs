@@ -21,6 +21,16 @@ addition x y
     | y < 0 = addition (x - 1) (plusOne y)
     | otherwise =  addition (plusOne x) (y - 1)
 
--- Log2
-log2 :: Fractional a => a -> a
+-- Log base 2
+log2 :: Double -> Double
 log2 = logBase 2
+
+-- ########################
+-- #### List recursion ####
+-- ########################
+
+-- Takes a count and an element and returns the list which is that element repeated that many times.
+replicate' :: Int -> a -> [a]
+replicate' i x = case (i, x) of 
+    (0, _)  -> []
+    _  -> x : replicate' (i - 1) x
