@@ -1,22 +1,25 @@
 import Control.Monad
 
 -- Put a string on the output and get a line from the input
-putAndGetLn :: String -> IO String
-putAndGetLn s = do
+putGetLn :: String -> IO String
+putGetLn s = do
     putStrLn s
     getLine
 
--- Put on output the result of f applied to the Io String from putAndGetLn
+-- Put many string on the output and get a line after each.
+putGetManyLn :: [String] -> IO [String]
+putGetManyLn  = mapM putGetLn
+
+-- Put on output the result of f applied to the Io String from putGetLn
 putGetPutLn :: String -> (String -> String) -> IO ()
 putGetPutLn s f = do
-    x <- putAndGetLn s
+    x <- putGetLn s
     putStrLn (f x)
 
 -- Ask the user for the base and height of a right angled triangle, calculates its area, and prints it to the screen
 areaRightAngleTriangle :: IO ()
 areaRightAngleTriangle = do
-    b <- putAndGetLn "The base?"
-    h <- putAndGetLn "The height?"
+    [b, h] <- putGetManyLn ["The base?", "The height?"]
     print (1/2 * read b * read h)
 
 -- Give a string depending on name input
