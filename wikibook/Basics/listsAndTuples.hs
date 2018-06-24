@@ -12,12 +12,12 @@ append x xs = xs ++ [x]
 
 -- Snd value from first tuple
 sndInFirst :: ((a, b1), b2) -> b1
-sndInFirst t = snd (fst t) 
+sndInFirst t = snd (fst t)
 
 -- Returns the head and the tail of a list as the first and second elements of a tuple
-headTailTuple  :: [a] -> (a, [a])
+headTailTuple :: [a] -> (a, [a])
 headTailTuple [] = error "The array is empty"
-headTailTuple xs = (head xs, tail xs) 
+headTailTuple xs = (head xs, tail xs)
 
 -- Gives the fifth element of a list
 fifth :: [a] -> a
