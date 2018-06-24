@@ -16,11 +16,16 @@ putGetPutLn s f = do
     x <- putGetLn s
     putStrLn (f x)
 
+putGetManyPrint :: Show a => [String] -> ([String] -> a) -> IO ()
+putGetManyPrint xs f = do
+    res <- putGetManyLn xs
+    print (f res)
+
 -- Ask the user for the base and height of a right angled triangle, calculates its area, and prints it to the screen
-areaRightAngleTriangle :: IO ()
-areaRightAngleTriangle = do
-    [b, h] <- putGetManyLn ["The base?", "The height?"]
-    print (1/2 * read b * read h)
+areaRAT :: (Fractional a, Read a) => [String] -> a
+areaRAT [b, h] = 1/2 * read b * read h
+answerAreaRAT :: IO ()
+answerAreaRAT = putGetManyPrint ["The base?", "The height?"] areaRAT
 
 -- Give a string depending on name input
 strFromName :: String -> String
