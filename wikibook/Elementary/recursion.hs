@@ -52,3 +52,7 @@ zip' :: [a] -> [b] -> [(a, b)]
 zip' xs xxs
   | length xs == 1 || length xxs == 1 = [heads xs xxs]
   | otherwise = heads xs xxs : zip' (tail xs) (tail xxs)
+
+length' :: [a] -> Int
+length' [] = 0
+length' (x:xs) = length xs + 1
